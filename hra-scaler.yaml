@@ -1,0 +1,20 @@
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: HorizontalRunnerAutoscaler
+metadata:
+  name: example-runner-deployment-autoscaler
+spec:
+  scaleTargetRef:
+    # Your RunnerDeployment Here
+    name: example-runnerdeploy
+    kind: RunnerDeployment
+  minReplicas: 1
+  maxReplicas: 20
+  metrics:
+  - type: TotalNumberOfQueuedAndInProgressWorkflowRuns
+    repositoryNames:
+    - GithubRunner
+  #- type: PercentageRunnersBusy
+  #  scaleUpThreshold: '0.5'
+  #  scaleDownThreshold: '0.25'
+  #  scaleUpFactor: '5'
+  #  scaleDownFactor: '0.5'

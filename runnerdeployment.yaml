@@ -3,7 +3,6 @@ kind: RunnerDeployment
 metadata:
   name: example-runnerdeploy
 spec:
-  replicas: 3
   template:
     spec:
       repository: yaronpri/GithubRunner
