@@ -18,11 +18,16 @@ Install runner controller  (the yaml in this repo is "v0.25.2"v !! change it if 
 ``` 
 kubectl create -f actions-runner-controller.yaml 
 ```
+If you need to connect to GHES / GHEC (Github Enterprise Server / Cloud), need to run the following command:
+```
+kubectl set env deploy/actions-runner-controller -c manager GITHUB_ENTERPRISE_URL=<GHEC/S URL> --namespace actions-runner-system
+```
 
 In this example we will show the use of PAT authentication (2nd option is App Authentication), the way to generate GITHUB_TOKEN is explained in the above complete insturctions 
 ```
 kubectl create secret generic controller-manager  -n actions-runner-system --from-literal=github_token=${GITHUB_TOKEN}
 ```
+
 
 Install the self-hosted runners on the cluster
 ```
