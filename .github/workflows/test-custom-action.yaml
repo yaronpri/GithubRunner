@@ -2,6 +2,10 @@ name: test-custom
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      instring:
+        type: string
+        default: "test test test"
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
@@ -11,7 +15,7 @@ jobs:
         id: hello
         uses: yaronpri/hello-world-docker-action@main
         with:
-          who-to-greet: 'Mona the Octocat'
+          who-to-greet: ${{ inputs.instring }}
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
