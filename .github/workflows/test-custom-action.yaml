@@ -13,8 +13,8 @@ on:
         default: "tenant id"
 jobs:
   hello_world_job:
-    runs-on: ubuntu-latest
-    name: ACR Login JOB with managed identity
+    runs-on: self-hosted
+    name: ACR Login job with managed identity
     steps:
       - name: ACR login
         id: acrlogin
