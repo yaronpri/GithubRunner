@@ -28,6 +28,6 @@ jobs:
       - name: commit
         run: |
           # Stage the file, commit and push
-          #git add time.txt
+          git add .
           git commit -m "updateversion"
           git push origin master
