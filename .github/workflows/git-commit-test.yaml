@@ -18,7 +18,7 @@ jobs:
             sed -i "s/$version/${GITHUB_REF##*/}-$git_hash/" ./values.yaml
       - name: cat
         run: |
-          cat
+          cat ./values.yaml
       - name: setup git config
         run: |
           # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
