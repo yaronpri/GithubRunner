@@ -7,21 +7,27 @@ jobs:
       # Checkout the branch
       - name: checkout
         uses: actions/checkout@v2
-
-      - name: save current date
+      - name: ls and pwd
         run: |
-          # do some operation that changes a file in the git repo
-          date > time.txt
-
+          pwd
+          ls -l
+      - name: Update Version
+        run: |
+            git_hash=$(git rev-parse --short "$GITHUB_SHA")
+            version=$(cat ./values.yaml | grep version: | awk '{print $2}')
+            sed -i "s/$version/${GITHUB_REF##*/}-$git_hash/" ./values.yaml
+      - name: cat
+        run: |
+          cat
       - name: setup git config
         run: |
           # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
+          #git config user.name "GitHub Actions Bot"
+          #git config user.email "<>"
 
       - name: commit
         run: |
           # Stage the file, commit and push
-          git add time.txt
-          git commit -m "new date commit"
-          git push origin master
+          #git add time.txt
+          #git commit -m "new date commit"
+          #git push origin master
