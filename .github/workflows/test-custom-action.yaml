@@ -28,8 +28,8 @@ jobs:
           client_id: ${{ inputs.client_id }}
           tenant_id: ${{ inputs.tenant_id }}
       # Use the output from the `hello` step
-      #- name: Get the output time
-      #  run: echo "The time was ${{ steps.acrlogin.outputs.time }}"
+      - name: Get the output result
+        run: echo "The result was ${{ steps.acrlogin.outputs.result }}"
   hello_world_comp:
     runs-on: ubuntu-latest
     name: A job to say hello from comp
