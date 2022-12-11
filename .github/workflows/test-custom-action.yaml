@@ -3,14 +3,18 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
-      acr:
+      acr_uri:
         type: string
         description: "ACR name"
         default: "acrname.azurecr.io"
-      tenant:
+      client_id:
+        type: string
+        description: "Client ID (in case of multiple managed identity)"
+        default: ""
+      tenant_id:
         type: string
         description: "tenant id"
-        default: "tenant id"
+        default: ""
 jobs:
   hello_world_job:
     runs-on: self-hosted
@@ -20,11 +24,12 @@ jobs:
         id: acrlogin
         uses: yaronpri/hello-world-docker-action@main
         with:
-          acr-uri: ${{ inputs.acr }}
-          tenant-id: ${{ inputs.tenant }}
+          acr_uri: ${{ inputs.acr_uri }}
+          client_id: ${{ inputs.client_id }}
+          tenant_id: ${{ inputs.tenant_id }}
       # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.acrlogin.outputs.time }}"
+      #- name: Get the output time
+      #  run: echo "The time was ${{ steps.acrlogin.outputs.time }}"
   hello_world_comp:
     runs-on: ubuntu-latest
     name: A job to say hello from comp
