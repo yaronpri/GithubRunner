@@ -27,7 +27,7 @@ jobs:
           acr_uri: ${{ inputs.acr_uri }}
           client_id: ${{ inputs.client_id }}
           tenant_id: ${{ inputs.tenant_id }}
-      # Use the output from the `hello` step
+      # Login with managed identity
       - name: Docker login
         run: docker login ${{ inputs.acr_uri }} -u 00000000-0000-0000-0000-000000000000 -p ${{ steps.acrlogin.outputs.result }}
   hello_world_comp:
