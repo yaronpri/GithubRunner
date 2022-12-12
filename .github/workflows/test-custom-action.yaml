@@ -20,6 +20,8 @@ jobs:
     runs-on: self-hosted
     name: ACR Login job with managed identity
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
       - name: ACR login
         id: acrlogin
         uses: yaronpri/hello-world-docker-action@main
@@ -30,6 +32,10 @@ jobs:
       # Login with managed identity
       - name: Docker login
         run: docker login ${{ inputs.acr_uri }} -u 00000000-0000-0000-0000-000000000000 -p ${{ steps.acrlogin.outputs.result }}
+      - name: Docker build
+        run: docker build -t ${{ inputs.acr_uri }}/acrmanagedidtest .
+      - name: Docker push
+        run: docker push ${{ inputs.acr_uri }}/acrmanagedidtest
   hello_world_comp:
     runs-on: ubuntu-latest
     name: A job to say hello from comp
