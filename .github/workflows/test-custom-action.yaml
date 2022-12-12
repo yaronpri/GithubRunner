@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v3
       - name: ACR login
         id: acrlogin
-        uses: yaronpri/hello-world-docker-action@main
+        uses: yaronpri/runner-identity-acr-auth-action@v1
         with:
           acr_uri: ${{ inputs.acr_uri }}
           client_id: ${{ inputs.client_id }}
