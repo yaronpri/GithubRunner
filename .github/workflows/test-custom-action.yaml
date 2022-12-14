@@ -1,4 +1,4 @@
-name: test-custom
+name: test-acrlogin
 env:
   IMAGE_NAME: acrlogintest
 on:
