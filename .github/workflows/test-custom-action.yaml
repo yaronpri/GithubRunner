@@ -44,7 +44,7 @@ jobs:
         id: foo
         uses: yaronpri/hello-world-composite-action@main
         with:
-          who-to-greet: ${{ inputs.instring }}
+          who-to-greet: ${{ inputs.acr_uri }}
       # Use the output from the `hello` step
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
         shell: bash
